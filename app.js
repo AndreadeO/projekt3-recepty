@@ -17,3 +17,9 @@ recept-hodnoceni, recept-nazev, recept-popis.
 
 6) Poslední vybraný recept ulož do Local Storage, aby se při novém otevření aplikace načetl.
 */
+
+// zobrazime seznam receptu, fce co veyme pole s objekty, proiterje pole a vytvori seznam receptu (for each loop)
+// nadpis a image do leveho rohu, to proiterujem a 16x se ukaze v seznamu
+// dalsi fce, po klik na recept ulozit objekt/value ci index do local storage
+//kdyz refreshnu str zustane tam ten oterveny recept(ta fce koukni fo local storage a pokud tam neco qqqqqqqqje, tak zobraz a pokud ne, tak nic)
+//hledani - prochazeni celeho pole, fce filter a inclue
