@@ -23,3 +23,34 @@ recept-hodnoceni, recept-nazev, recept-popis.
 // dalsi fce, po klik na recept ulozit objekt/value ci index do local storage
 //kdyz refreshnu str zustane tam ten oterveny recept(ta fce koukni fo local storage a pokud tam neco qqqqqqqqje, tak zobraz a pokud ne, tak nic)
 //hledani - prochazeni celeho pole, fce filter a inclue
+
+
+const kontejner = document.querySelector('.kontejner');
+
+const recepty = document.querySelector('.recepty');
+
+
+for (i = 0; i < recepty.length; i++) {
+    let recept = document.createElement('div');
+    recept.classList.add('recept'); 
+
+    let receptFoto = document.createElement('div');
+    receptFoto.classList.add('recept-obrazek');
+
+    let obrazek = document.createElement('img');
+    obrazek.src = recepty[i].img;
+    
+    let receptInfo = document.createElement('div');
+    receptInfo.classList.add('recept-info');
+
+    let nazevPolozky = document.createElement('h3');
+    nazevPolozky.textContent = recepty[i].nadpis;
+
+    recept.appendChild(receptFoto);
+    recept.appendChild(receptInfo);
+    receptFoto.appendChild(obrazek);
+    receptInfo.appendChild(nazevPolozky);
+
+    recepty.appendChild(recept);
+
+}
