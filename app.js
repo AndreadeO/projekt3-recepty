@@ -26,11 +26,14 @@ recept-hodnoceni, recept-nazev, recept-popis.
 
 
 const kontejner = document.querySelector('.kontejner');
+const receptyElement = document.querySelector('.recepty');
 
-const recepty = document.querySelector('.recepty');
+updateReceptu();
+vytvorSeznamRecept();
 
 
-for (i = 0; i < recepty.length; i++) {
+function vytvorRecept(objektRecept) {
+    //vytvori jeden recept
     let recept = document.createElement('div');
     recept.classList.add('recept'); 
 
@@ -38,19 +41,72 @@ for (i = 0; i < recepty.length; i++) {
     receptFoto.classList.add('recept-obrazek');
 
     let obrazek = document.createElement('img');
-    obrazek.src = recepty[i].img;
+    obrazek.src = objektRecept.img;
     
     let receptInfo = document.createElement('div');
     receptInfo.classList.add('recept-info');
 
     let nazevPolozky = document.createElement('h3');
-    nazevPolozky.textContent = recepty[i].nadpis;
+    nazevPolozky.textContent = objektRecept.nadpis;
 
-    recept.appendChild(receptFoto);
-    recept.appendChild(receptInfo);
     receptFoto.appendChild(obrazek);
     receptInfo.appendChild(nazevPolozky);
+    recept.appendChild(receptFoto);
+    recept.appendChild(receptInfo);
 
-    recepty.appendChild(recept);
+    
+    recept.addEventListener('click', () => {
+        vytvorReceptDetail(objektRecept);
+    });
+
+
+
+    return recept;
 
 }
+
+function vytvorSeznamRecept() {
+    for (let i = 0; i < recepty.length; i++) {
+        // console.log(recepty[i]);
+        receptyElement.appendChild(vytvorRecept(recepty[i]));
+    }
+}
+
+function updateReceptu() {
+    let posledniRecept = localStorage.posledniRecept;
+
+    if (posledniRecept !== null && posledniRecept !== undefined) {
+		let indexReceptu = parseInt(posledniRecept);
+
+		if (indexReceptu >= 0 && indexReceptu < recepty.length) {
+			vytvorReceptDetail(indexReceptu);
+		}
+    }    
+}
+
+function vytvorReceptDetail(objektRecept) {
+    //uloz detail do localstorage
+    //detail receptu
+    for (let i = 0; i < recepty.length; i++) {
+
+        let fotoReceptu = document.querySelector('#recept-foto');
+        fotoReceptu.setAttribute("src", recepty[i].img);
+
+        let kategorieReceptu = document.querySelector('#recept-kategorie');
+        kategorieReceptu.innerHTML = recepty[i].kategorie;
+
+        let hodnoceniReceptu = document.querySelector('#recept-hodnoceni');
+        hodnoceniReceptu.innerHTML = recepty[i].hodnoceni;
+
+        let nazevReceptu = document.querySelector('#recept-nazev');
+        nazevReceptu.innerHTML = recepty[i].nazev;
+
+        let popisReceptu = document.querySelector('#recept-popis');
+        popisReceptu.innerHTML = recepty[i].popis;
+    }
+    
+
+}
+
+
+
