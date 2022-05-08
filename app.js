@@ -108,5 +108,11 @@ function vytvorReceptDetail(objektRecept) {
 
 }
 
+function hledat() {
+    let hledaniReceptu = document.querySelector('#hledat').value;
+    recepty = recepty.filter(recept => recept.nadpis.toLowerCase().includes(hledaniReceptu));
+    
 
+    
+}
 
